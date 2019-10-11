@@ -20,3 +20,16 @@
 .App-link {
   color: #09d3ac;
 }
+
+.main-layout {
+  background:#D5D5D5;
+  }
+.panier{
+  background:#EAE9E9;
+}
+.rounded-corner{
+  border-radius: 500px;
+  padding: 20px;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
