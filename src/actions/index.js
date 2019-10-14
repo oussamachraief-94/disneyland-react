@@ -1,11 +1,9 @@
-export const increment = ()=>{
+export const reserve = (hotelName)=>{
     return {
-        type:'INCREMENT'
+        type:'RESERVER',
+        data:hotelName
+
     };
 }
 
-export const decrement = ()=>{
-    return {
-        type:'DECREMENT'
-    };
-}
+

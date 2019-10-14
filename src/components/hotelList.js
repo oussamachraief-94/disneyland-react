@@ -1,31 +1,22 @@
-import React, { PureComponent } from 'react';
+import React  from 'react';
+import { ReactComponent } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import ReactComponent from 'react';
+import { reserve } from './../actions';
+import { useSelector, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 
-class HotelList extends PureComponent {
 
+class HotelList extends React.Component {
 
+    
+    
+    
     render() {
-        const hotels = [{
-            hotelName: "hotel1", description: "this is a good hotel 3* Un texte est une série orale ou écrite de mots perçus comme constituant un ensemble cohérent, porteur de sens et utilisant les structures propres à une langue (conjugaisons, construction et association des phrases…)1. Un texte n'a pas de longueur déterminée sauf dans le cas de poèmes à forme fixe comme le sonnet ou le haïku.",
-            image: "https://picsum.photos/id/59/200/300", price: 200
-        }, {
-            hotelName: "hotel2", description: "this is a great hotel 5* Un texte est une série orale ou écrite de mots perçus comme constituant un ensemble cohérent, porteur de sens et utilisant les structures propres à une langue (conjugaisons, construction et association des phrases…)1. Un texte n'a pas de longueur déterminée sauf dans le cas de poèmes à forme fixe comme le sonnet ou le haïku.",
-            image: "https://picsum.photos/id/60/200/300", price: 520
-        }, {
-            hotelName: "hotel3", description: "this is nice  hotel 4* Un texte est une série orale ou écrite de mots perçus comme constituant un ensemble cohérent, porteur de sens et utilisant les structures propres à une langue (conjugaisons, construction et association des phrases…)1. Un texte n'a pas de longueur déterminée sauf dans le cas de poèmes à forme fixe comme le sonnet ou le haïku.",
-            image: "https://picsum.photos/id/61/200/300", price: 300
-        }, {
-            hotelName: "hotel4", description: "this is a coool hotel 2* Un texte est une série orale ou écrite de mots perçus comme constituant un ensemble cohérent, porteur de sens et utilisant les structures propres à une langue (conjugaisons, construction et association des phrases…)1. Un texte n'a pas de longueur déterminée sauf dans le cas de poèmes à forme fixe comme le sonnet ou le haïku.",
-            image: "https://picsum.photos/id/62/200/300", price: 80
-        }];
-
-        
-        let hotelList = hotels.map((hotel) => {
+        let hotelList = this.props.counter.map((hotel) => {
             return (
                 <Row>
                     <Col sm={10} md={10} className="main-layout">
@@ -39,7 +30,7 @@ class HotelList extends PureComponent {
                                             <Card.Text>
                                                 {hotel.description}
                                             </Card.Text>
-                                            <Button  variant="primary">Reserve</Button>
+                                            <Button onClick={()=>this.props.reserve()} variant="primary">Reserve</Button>
                                         </Card.Body></Col></Row>
                             </Card>
                         </Row>
@@ -55,10 +46,28 @@ class HotelList extends PureComponent {
 
 
     }
+        
+    
+    
+     
+    
+    
 }
 
-HotelList.propTypes = {
+const mapStateToProps=(state)=>{
+    return {
+        counter:state.counter
+    };
+}
+const mapDispatchToProps = dispatch => {
+    return {
+      // dispatching plain actions
+      reserve: () => dispatch({ type: 'RESERVER' }),
+      
+    }
+  }
+export default connect(mapStateToProps,mapDispatchToProps)(HotelList);
 
-};
 
-export default HotelList;
+
+

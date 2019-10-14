@@ -7,10 +7,12 @@ import {createStore,combineReducers} from 'redux';
 import allReducers from './reducers';
 import {Provider } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import HotelList from './components/hotelList';
+import { connect } from 'react-redux';
 const store = createStore(
     allReducers,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
 ReactDOM.render(
     <Provider store={store}>
         <App />
